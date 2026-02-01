@@ -41,7 +41,8 @@
         nav { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 24px; font-weight: 700; color: var(--primary-blue); text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary-blue); }
 
         /* Hero Section */
         .hero {
@@ -59,19 +60,23 @@
         .hero-content h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; line-height: 1.2; }
         .hero-content p { font-size: 1.1rem; margin-bottom: 25px; max-width: 600px; }
 
-        .btn-wa { 
+        /* Buttons */
+        .btn-action { 
             background: var(--accent-green); 
             color: white; 
-            padding: 12px 25px; 
+            padding: 14px 28px; 
             border-radius: 50px; 
             text-decoration: none; 
-            font-weight: 600; 
+            font-weight: 700; 
             display: inline-flex; 
             align-items: center; 
             gap: 10px;
             transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
         }
-        .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(140, 198, 63, 0.4); }
+        .btn-action:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(140, 198, 63, 0.4); }
 
         /* Highlight Section */
         .highlight-self {
@@ -112,6 +117,59 @@
         tr:hover { background: #fdfdfd; }
         .price-tag { font-weight: 700; color: var(--primary-blue); }
 
+        /* MODAL SYSTEM */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.6); 
+            align-items: center; 
+            justify-content: center; 
+            backdrop-filter: blur(4px);
+        }
+        .modal-content { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 20px; 
+            width: 90%; 
+            max-width: 500px; 
+            position: relative; 
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #999; }
+        .modal-content h3 { margin-bottom: 20px; color: var(--dark-blue); font-size: 1.5rem; }
+        
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-size: 0.9rem; margin-bottom: 5px; font-weight: 600; color: var(--text-dark); }
+        .form-group input, .form-group select, .form-group textarea { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 10px; 
+            font-family: inherit; 
+            font-size: 0.95rem;
+        }
+        .btn-submit { 
+            width: 100%; 
+            background: var(--primary-blue); 
+            color: white; 
+            padding: 14px; 
+            border: none; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            margin-top: 10px; 
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .btn-submit:hover { background: var(--dark-blue); }
+
         /* Footer */
         footer { background: var(--footer-dark); color: white; padding: 60px 0 20px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
@@ -139,6 +197,7 @@
             <ul class="nav-links">
                 <li><a href="#layanan">Layanan</a></li>
                 <li><a href="#harga">Harga</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal()">Order Online</a></li>
                 <li><a href="#kontak">Kontak</a></li>
             </ul>
         </nav>
@@ -150,9 +209,9 @@
         <div class="hero-content">
             <h1>Pakaian Bersih,<br>Tanpa Antre.</h1>
             <p>Victory Laundry menghadirkan layanan cuci premium dan Self-Service menggunakan teknologi mesin terbaru.</p>
-            <a href="https://wa.me/6282111887939" class="btn-wa">
-                <i class="fab fa-whatsapp"></i> Hubungi Kami Sekarang
-            </a>
+            <button class="btn-action" onclick="openModal()">
+                <i class="fas fa-truck"></i> Pesan Antar Jemput
+            </button>
         </div>
     </div>
 </section>
@@ -171,12 +230,12 @@
             <h2>Layanan Kami</h2>
         </div>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card" onclick="openModal()">
                 <i class="fas fa-box"></i>
                 <h3>Laundry Kiloan</h3>
                 <p>Cuci kering lipat/setrika.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="openModal()">
                 <i class="fas fa-tshirt"></i>
                 <h3>Cuci Satuan</h3>
                 <p>Jas, Kebaya & Pakaian Formal.</p>
@@ -186,7 +245,7 @@
                 <h3>Self Service</h3>
                 <p>Cuci cepat pakai koin.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="openModal()">
                 <i class="fas fa-truck"></i>
                 <h3>Antar Jemput</h3>
                 <p>Cucian dijemput ke rumah.</p>
@@ -246,6 +305,35 @@
     </div>
 </section>
 
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h3>Formulir Antar-Jemput</h3>
+        <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Lengkapi data di bawah untuk melakukan pemesanan.</p>
+        
+        <div class="form-group">
+            <label for="nama">Nama Lengkap</label>
+            <input type="text" id="nama" placeholder="Contoh: Budi Santoso">
+        </div>
+        <div class="form-group">
+            <label for="layanan-select">Pilih Layanan</label>
+            <select id="layanan-select">
+                <option value="Cuci Kiloan">Cuci Kiloan</option>
+                <option value="Cuci Satuan">Cuci Satuan</option>
+                <option value="Cuci Bedcover/Karpet">Cuci Bedcover/Karpet</option>
+                <option value="Cuci Sepatu/Tas">Cuci Sepatu/Tas</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="alamat">Alamat Lengkap Penjemputan</label>
+            <textarea id="alamat" rows="3" placeholder="Nama Jalan, Blok, No. Rumah..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="sendOrder()">
+            <i class="fab fa-whatsapp"></i> Kirim Pesanan via WhatsApp
+        </button>
+    </div>
+</div>
+
 <footer id="kontak">
     <div class="container">
         <div class="footer-grid">
@@ -256,13 +344,13 @@
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://wa.me/62812345678"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
             <div class="footer-col">
                 <h4>Kontak & Alamat</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Alamat: Jalan Hasanudin No.196</p>
-                <p><i class="fas fa-phone"></i> +62 821-1188-7939</p>
+                <p><i class="fas fa-map-marker-alt"></i> Alamat: [Link Google Maps Anda]</p>
+                <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
                 <p><i class="fas fa-clock"></i> Buka: 07:00 - 21:00</p>
             </div>
         </div>
@@ -271,6 +359,46 @@
         </div>
     </div>
 </footer>
+
+<script>
+    // Fungsi membuka modal
+    function openModal() {
+        document.getElementById('orderModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Stop scroll
+    }
+
+    // Fungsi menutup modal
+    function closeModal() {
+        document.getElementById('orderModal').style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable scroll
+    }
+
+    // Fungsi kirim pesanan ke WhatsApp
+    function sendOrder() {
+        const nama = document.getElementById('nama').value;
+        const layanan = document.getElementById('layanan-select').value;
+        const alamat = document.getElementById('alamat').value;
+        const noWA = "6281234567890"; // GANTI DENGAN NOMOR WHATSAPP PEMILIK ASLI
+
+        if (nama === "" || alamat === "") {
+            alert("Harap isi Nama dan Alamat lengkap Anda!");
+            return;
+        }
+
+        const text = `Halo Victory Laundry,%0A%0ASaya ingin memesan layanan *Antar-Jemput*:%0A%0A*Nama:* ${nama}%0A*Layanan:* ${layanan}%0A*Alamat:* ${alamat}%0A%0AMohon segera diproses ya, terima kasih.`;
+        
+        const url = `https://wa.me/${noWA}?text=${text}`;
+        window.open(url, '_blank');
+    }
+
+    // Menutup modal jika user klik di area luar modal
+    window.onclick = function(event) {
+        const modal = document.getElementById('orderModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
 
 </body>
 </html>
