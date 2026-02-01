@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victory Laundry - Profesional & Self Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #00AEEF;
+            --dark-blue: #0056b3;
+            --accent-green: #8CC63F;
+            --footer-dark: #1a252f;
+            --text-dark: #333;
+            --bg-light: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Navigation */
+        header {
+            background: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--primary-blue); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 75, 141, 0.7), rgba(0, 174, 239, 0.5)), 
+                        url('https://images.pexels.com/photos/5591581/pexels-photo-5591581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: left;
+        }
+
+        .hero-content h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; line-height: 1.2; }
+        .hero-content p { font-size: 1.1rem; margin-bottom: 25px; max-width: 600px; }
+
+        .btn-wa { 
+            background: var(--accent-green); 
+            color: white; 
+            padding: 12px 25px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(140, 198, 63, 0.4); }
+
+        /* Highlight Section */
+        .highlight-self {
+            background: var(--primary-blue);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Services Grid */
+        .services { padding: 80px 0; background: #fff; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2rem; color: var(--dark-blue); }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .service-card {
+            background: var(--bg-light);
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .service-card:hover { background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(-5px); }
+        .service-card i { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 15px; }
+
+        /* Pricing Table */
+        .pricing { padding: 80px 0; background: var(--bg-light); }
+        .table-container { 
+            background: white; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        thead { background: var(--dark-blue); color: white; }
+        th, td { padding: 15px 20px; text-align: left; border-bottom: 1px solid #eee; }
+        tr:hover { background: #fdfdfd; }
+        .price-tag { font-weight: 700; color: var(--primary-blue); }
+
+        /* Footer */
+        footer { background: var(--footer-dark); color: white; padding: 60px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-icons a { 
+            width: 35px; height: 35px; background: rgba(255,255,255,0.1); 
+            display: flex; align-items: center; justify-content: center; 
+            border-radius: 50%; color: white; text-decoration: none; transition: 0.3s;
+        }
+        .social-icons a:hover { background: var(--primary-blue); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+            th, td { padding: 10px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <a href="#" class="logo"><i class="fas fa-soap"></i> Victory Laundry</a>
+            <ul class="nav-links">
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#harga">Harga</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Pakaian Bersih,<br>Tanpa Antre.</h1>
+            <p>Victory Laundry menghadirkan layanan cuci premium dan Self-Service menggunakan teknologi mesin terbaru.</p>
+            <a href="https://wa.me/6282111887939" class="btn-wa">
+                <i class="fab fa-whatsapp"></i> Hubungi Kami Sekarang
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="highlight-self">
+    <div class="container">
+        <div style="background: rgba(255,255,255,0.2); display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px;">TERBARU</div>
+        <h2>Self-Service Laundry (Cuci Mandiri)</h2>
+        <p>Cuci & keringkan sendiri hanya dalam 60 menit dengan mesin koin modern.</p>
+    </div>
+</section>
+
+<section id="layanan" class="services">
+    <div class="container">
+        <div class="section-title">
+            <h2>Layanan Kami</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-box"></i>
+                <h3>Laundry Kiloan</h3>
+                <p>Cuci kering lipat/setrika.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tshirt"></i>
+                <h3>Cuci Satuan</h3>
+                <p>Jas, Kebaya & Pakaian Formal.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-sync"></i>
+                <h3>Self Service</h3>
+                <p>Cuci cepat pakai koin.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-truck"></i>
+                <h3>Antar Jemput</h3>
+                <p>Cucian dijemput ke rumah.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="harga" class="pricing">
+    <div class="container">
+        <div class="section-title">
+            <h2>Daftar Harga</h2>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Layanan</th>
+                        <th>Waktu</th>
+                        <th>Harga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cuci Kering Lipat (Kiloan)</td>
+                        <td>2 Hari</td>
+                        <td class="price-tag">Rp 7.000 /kg</td>
+                    </tr>
+                    <tr>
+                        <td>Cuci Setrika (Reguler)</td>
+                        <td>2 Hari</td>
+                        <td class="price-tag">Rp 10.000 /kg</td>
+                    </tr>
+                    <tr>
+                        <td>Cuci Ekspres</td>
+                        <td>6 Jam</td>
+                        <td class="price-tag">Rp 15.000 /kg</td>
+                    </tr>
+                    <tr>
+                        <td>Self-Service (Cuci + Kering)</td>
+                        <td>1 Jam</td>
+                        <td class="price-tag">Rp 25.000 /lot</td>
+                    </tr>
+                    <tr>
+                        <td>Bedcover Besar</td>
+                        <td>3 Hari</td>
+                        <td class="price-tag">Rp 35.000 /pcs</td>
+                    </tr>
+                    <tr>
+                        <td>Sepatu / Tas</td>
+                        <td>3-4 Hari</td>
+                        <td class="price-tag">Mulai Rp 30rb</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<footer id="kontak">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Victory Laundry</h4>
+                <p>Menjamin kebersihan dan keharuman pakaian Anda dengan standar tinggi.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Kontak & Alamat</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Alamat: Jalan Hasanudin No.196</p>
+                <p><i class="fas fa-phone"></i> +62 821-1188-7939</p>
+                <p><i class="fas fa-clock"></i> Buka: 07:00 - 21:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Victory Laundry. Kebersihan Adalah Prioritas Kami.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
